@@ -28,7 +28,7 @@ We implemented a strict **Medallion Architecture** to process the data from raw 
 2.  **Open-Meteo API (Historical Weather):** [open-meteo.com](https://open-meteo.com/en/docs/historical-weather)
     * Format: REST API (JSON)
     * Content: Historical hourly weather data (aggregated to daily in our pipeline) based on airport coordinates.
-3.  **Global Airport Database (Mapping):** *(Used for Enrichment)*
+3.  **Global Airport Database (Mapping):** [openflights.org](https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat)
     * Format: CSV
     * Content: Maps `ICAO` codes from the flight data to `Latitude` and `Longitude` required to query the Weather API.
 
