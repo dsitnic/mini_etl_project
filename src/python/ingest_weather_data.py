@@ -15,7 +15,7 @@ from typing import Any
 # CONSTANTS
 
 PROJECT         = Path.cwd() 
-LOCATIONS_FILE  = PROJECT / "data" / "bronze" / "PLACEHOLDER.csv" # TODO, replace PLACEHOLDER with silver data filtered for european airports
+LOCATIONS_FILE  = PROJECT / "data" / "silver" / "airport_locations_raw_europe.csv" # TODO, replace with actualy silver data
 OUTPUT_DIR      = PROJECT / "data" / "silver"
 
 
@@ -94,14 +94,21 @@ def fetch_weather_data_batches(
 
     all_frames = []
     total_batches = (len(locations) + batch_size - 1) // batch_size
+    started_at = time.time()
 
     for batch_num, start in enumerate(range(0, len(locations), batch_size)):
-        print(f"batch {batch_num} out of {total_batches}")
+        elapsed_seconds = int(time.time() - started_at)
+
+        print(
+            f"batch {batch_num} out of {total_batches} "
+            f"| elapsed {elapsed_seconds // 60}m {elapsed_seconds % 60}s"
+        )
+
         batch = locations.iloc[start:start + batch_size]
 
         params = {
-            "latitude":     batch["Latitude"].tolist(),
-            "longitude":    batch["Longitude"].tolist(),
+            "latitude":     batch["Latitude"],
+            "longitude":    batch["Longitude"],
             "start_date":   START_DATE,
             "end_date":     END_DATE,
             "daily":        VARIABLES,
