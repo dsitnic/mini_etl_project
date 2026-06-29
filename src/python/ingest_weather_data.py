@@ -15,31 +15,36 @@ from typing import Any
 # CONSTANTS
 
 PROJECT         = Path.cwd() 
-LOCATIONS_FILE  = PROJECT / "data" / "bronze" / "airport_locations_raw.csv" # TODO, replace path with silver data where we only have european airport locations
+LOCATIONS_FILE  = PROJECT / "data" / "bronze" / "PLACEHOLDER.csv" # TODO, replace PLACEHOLDER with silver data filtered for european airports
 OUTPUT_DIR      = PROJECT / "data" / "silver"
 
+
 URL             = "https://archive-api.open-meteo.com/v1/archive"
+START_DATE      = "2021-01-01"
+END_DATE        = "2025-12-31"
+SOURCE          = "https://open-meteo.com"
 VARIABLES       = [
     "temperature_2m_mean",
     "precipitation_sum",
     "wind_speed_10m_max"
 ]
 
+
 # HELPER FUNCTIONS
 
 def setup_api_client() -> openmeteo_requests.Client:
     """Create API client."""
 
-    cache_session = requests_cache.CachedSession(".cache", expire_after=3600)
-    retry_session = retry(cache_session, retries=5, backoff_factor=0.2)
-    openmeteo = openmeteo_requests.Client(session=retry_session)
+    cache_session   = requests_cache.CachedSession(".cache", expire_after=3600)
+    retry_session   = retry(cache_session, retries=5, backoff_factor=0.2)
+    openmeteo       = openmeteo_requests.Client(session=retry_session)
 
     return openmeteo
 
 
 def request_with_retry(openmeteo: openmeteo_requests.Client, params: dict[str, Any]) -> list[Any]:
     """
-    Request data with retries. 
+    Request data with infinite retries on failure. 
     This is necessary because open-meteo limits the amount of data one can fetch per minute and per hour.
     """
 
@@ -62,20 +67,20 @@ def response_to_dataframe(response: Any) -> pd.DataFrame:
     daily = response.Daily()
 
     dates = pd.date_range(
-        start=pd.to_datetime(daily.Time(), unit="s", utc=True),
-        periods=len(daily.Variables(0).ValuesAsNumpy()),
-        freq="D",
+        start   = pd.to_datetime(daily.Time(), unit="s", utc=True),
+        periods = len(daily.Variables(0).ValuesAsNumpy()),
+        freq    = "D",
     )
 
     return pd.DataFrame({
-        "longitude": response.Longitude(),
-        "latitude": response.Latitude(),
-        "year": dates.year,
-        "month": dates.month,
-        "day": dates.day,
-        "temperature_2m_mean": daily.Variables(0).ValuesAsNumpy(),
-        "precipitation_sum": daily.Variables(1).ValuesAsNumpy(),
-        "wind_speed_10m_max": daily.Variables(2).ValuesAsNumpy(),
+        "longitude":            response.Longitude(),
+        "latitude":             response.Latitude(),
+        "year":                 dates.year,
+        "month":                dates.month,
+        "day":                  dates.day,
+        "temperature_2m_mean":  daily.Variables(0).ValuesAsNumpy(),
+        "precipitation_sum":    daily.Variables(1).ValuesAsNumpy(),
+        "wind_speed_10m_max":   daily.Variables(2).ValuesAsNumpy(),
     })
 
 
@@ -95,11 +100,11 @@ def fetch_weather_data_batches(
         batch = locations.iloc[start:start + batch_size]
 
         params = {
-            "latitude": batch["Latitude"].tolist(),
-            "longitude": batch["Longitude"].tolist(),
-            "start_date": "2021-01-01",
-            "end_date": "2025-12-31",
-            "daily": VARIABLES,
+            "latitude":     batch["Latitude"].tolist(),
+            "longitude":    batch["Longitude"].tolist(),
+            "start_date":   START_DATE,
+            "end_date":     END_DATE,
+            "daily":        VARIABLES,
         }
         
         # get responses from openmeteo
@@ -119,19 +124,18 @@ def main():
     openmeteo = setup_api_client()
 
     # load file with locations data containing latitudes and longitudes
-    locations = pd.read_csv(LOCATIONS_FILE).head(100) # TODO remove .head(100) when production
+    locations = pd.read_csv(LOCATIONS_FILE)
 
-    # get wether data from open-meteo api for each location in batches.
+    # get wether data from open-meteo api in batches
     weather_df = fetch_weather_data_batches(openmeteo, locations, batch_size=10)
 
     # add metadata
     weather_df["load_timestamp"]    = datetime.now(timezone.utc).replace(microsecond=0)
-    weather_df["source"]            = "https://open-meteo.com"
+    weather_df["source"]            = SOURCE
     weather_df["run_id"]            = str(uuid.uuid4())
 
-    #weather_df.to_parquet(OUTPUT_DIR / "weather_daily", index=False, partition_cols=["year"])
-    weather_df.to_csv(OUTPUT_DIR / "weather_daily.csv", index=False) # TODO replace with parquet when finished
-    print("wrote files to .csv")
+    # save data to parquet and partition by year to keep filesizes down
+    weather_df.to_parquet(OUTPUT_DIR / "weather_daily", index=False, partition_cols=["year"])
 
 
 main()
