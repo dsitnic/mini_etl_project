@@ -6,7 +6,7 @@ import requests_cache
 import uuid
 import time
 
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from retry_requests import retry
 from typing import Any
@@ -19,10 +19,10 @@ LOCATIONS_FILE  = PROJECT / "data" / "silver" / "airport_locations_raw_europe.cs
 OUTPUT_DIR      = PROJECT / "data" / "silver"
 
 
+SOURCE          = "https://open-meteo.com"
 URL             = "https://archive-api.open-meteo.com/v1/archive"
 START_DATE      = "2021-01-01"
 END_DATE        = "2025-12-31"
-SOURCE          = "https://open-meteo.com"
 VARIABLES       = [
     "temperature_2m_mean",
     "precipitation_sum",
@@ -42,27 +42,69 @@ def setup_api_client() -> openmeteo_requests.Client:
     return openmeteo
 
 
+def get_wait_seconds(message: str) -> int:
+    '''
+    If you exceed the open-api minute/hourly or daily limit,
+    it will be reset at the start of the next minute/hour/day. 
+    This function calculates the seconds to wait untill the rate is reset.
+    '''
+
+    now = datetime.now(timezone.utc)
+    extra_delay = 5 # extra delay to avoid retrying too early due to time differences
+
+    if "tomorrow" in message:
+        next_day = (now + timedelta(days=1)).replace(
+            hour=0,
+            minute=0,
+            second=0,
+            microsecond=0,
+        )
+        return int((next_day - now).total_seconds() + extra_delay)
+
+    if "next hour" in message:
+        next_hour = (now + timedelta(hours=1)).replace(
+            minute=0,
+            second=0,
+            microsecond=0,
+        )
+        return int((next_hour - now).total_seconds() + extra_delay * 10)
+
+    if "one minute" in message:
+        next_minute = (now + timedelta(minutes=1)).replace(
+            second=0,
+            microsecond=0,
+        )
+        return int((next_minute - now).total_seconds() + extra_delay * 100)
+
+    return 60
+
+
 def request_with_retry(openmeteo: openmeteo_requests.Client, params: dict[str, Any]) -> list[Any]:
     """
-    Request data with infinite retries on failure. 
-    This is necessary because open-meteo limits the amount of data one can fetch per minute and per hour.
+    Request data with infinite retries on rate limit exceptions.
+    Waiting time between retries is calculated based on which rate limit is exceeded. 
+    This is necessary because open-meteo limits the amount of data one can fetch per minute, hour and day.
     """
 
-    tries = 0
 
     while True:
         try:
-            tries += 1
             responses = openmeteo.weather_api(URL, params=params)
-            print(f"request succeeded on try {tries}")
             return responses
         except Exception as e:
-            print(f"request failed on try {tries}, waiting 60 seconds: {e}")
-            time.sleep(60)
+            message = str(e).lower()
+
+            if "request limit exceeded" in message:
+                wait_seconds = get_wait_seconds(message)
+
+                print(f"request failed, waiting {wait_seconds} seconds: {e}")
+                time.sleep(wait_seconds)
+            else:
+                raise
 
 
 def response_to_dataframe(response: Any) -> pd.DataFrame:
-    """Convert data from response objects to DataFrame."""
+    """Convert data from the response objects returned by open-meteo API to a DataFrame."""
 
     daily = response.Daily()
 
@@ -100,7 +142,7 @@ def fetch_weather_data_batches(
         elapsed_seconds = int(time.time() - started_at)
 
         print(
-            f"batch {batch_num} out of {total_batches} "
+            f"batch {batch_num + 1} out of {total_batches} "
             f"| elapsed {elapsed_seconds // 60}m {elapsed_seconds % 60}s"
         )
 
@@ -145,4 +187,5 @@ def main():
     weather_df.to_parquet(OUTPUT_DIR / "weather_daily", index=False, partition_cols=["year"])
 
 
-main()
+if __name__ == "__main__":
+    main()
