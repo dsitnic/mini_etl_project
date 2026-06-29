@@ -42,7 +42,7 @@ for year in years_to_download:
             
             # Add the metadata columns using Pandas before saving
             df['load_timestamp'] = load_timestamp
-            df['source_system'] = url
+            df['source'] = url
             df['run_id'] = run_id
 
             # Save the enriched data straight into the Bronze folder
