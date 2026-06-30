@@ -1,0 +1,56 @@
+import csv
+from pathlib import Path
+
+BASE_DIR = Path(r"C:\mini_etl_project\data\bronze")
+
+LEFT_FILE = BASE_DIR / "airport_top100_locations_raw.csv"
+RIGHT_FILE = BASE_DIR / "airport_locations_raw.csv"
+OUTPUT_FILE = BASE_DIR / "airport_top100_locations_joined.csv"
+LOCATION_COLUMNS = ["Latitude", "Longitude"]
+
+
+def read_csv_rows(path: Path):
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+        return list(csv.DictReader(handle))
+
+
+def join_csvs(left_path: Path, right_path: Path, output_path: Path) -> Path:
+    left_rows = read_csv_rows(left_path)
+    right_rows = read_csv_rows(right_path)
+
+    if not left_rows:
+        raise ValueError(f"No rows found in left file: {left_path}")
+
+    left_fieldnames = list(left_rows[0].keys())
+
+    right_lookup = {}
+    for row in right_rows:
+        airport_code = (row.get("IATA") or row.get("airport_code") or "").strip()
+        if airport_code:
+            right_lookup[airport_code] = row
+
+    output_fieldnames = list(left_fieldnames)
+    for field in LOCATION_COLUMNS:
+        if field not in output_fieldnames:
+            output_fieldnames.append(field)
+
+    with output_path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=output_fieldnames)
+        writer.writeheader()
+
+        for left_row in left_rows:
+            merged_row = {field: left_row.get(field, "") for field in left_fieldnames}
+            airport_code = (left_row.get("airport_code") or "").strip()
+            right_row = right_lookup.get(airport_code, {})
+
+            for field in LOCATION_COLUMNS:
+                merged_row[field] = right_row.get(field, "")
+
+            writer.writerow(merged_row)
+
+    return output_path
+
+
+if __name__ == "__main__":
+    output_path = join_csvs(LEFT_FILE, RIGHT_FILE, OUTPUT_FILE)
+    print(f"Joined CSV written to: {output_path}")
