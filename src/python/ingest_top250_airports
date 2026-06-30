@@ -16,11 +16,11 @@ OUTPUT_FILE = BASE_DIR / "data" / "bronze" / "airport_top250_locations_raw.csv"
 run_id = str(uuid.uuid4())
 loaded_at = datetime.now().replace(microsecond=0)
 loaded_file_name = AIRPORTS_SOURCE_PATH.name
-source_url = "https://www.flightsfrom.com/top-100-airports"
+source_url = "https://ansperformance.eu/traffic/"
 
 
 AIRPORT_COLUMNS = [
-    "airport_name",
+    "date",
     "airport_code",
     "flights"
 ]

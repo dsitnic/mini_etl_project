@@ -7,10 +7,10 @@ SILVER_FOLDER = BASE_FOLDER / "data" / "silver"
 BRONZE_FOLDER = BASE_FOLDER / "data" / "bronze"
 
 # Load tables
-airport_top250 = pd.read_csv(BRONZE_FOLDER / "airport_top250_locations_joined.csv")
+airport_top250 = pd.read_csv(BRONZE_FOLDER / "airport_top250_locations_raw.csv")
 stg_airport_flights = pd.read_parquet(SILVER_FOLDER / "stg_airport_flights.parquet")
 stg_airport_geography = pd.read_csv(SILVER_FOLDER / "stg_airport_geography.csv")
-stg_weather_daily = pd.read_csv(SILVER_FOLDER / "stg_weather_daily.csv")
+stg_weather_daily = pd.read_parquet(SILVER_FOLDER / "stg_weather_daily_clean.parquet")
 
 # First left join: airport_top250 to stg_airport_flights
 silver_tables_joined = airport_top250.merge(
