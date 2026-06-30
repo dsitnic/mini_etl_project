@@ -81,8 +81,8 @@ def main():
 
     # inspect and standardize weather data
     inspect_weather_data(weather_df)
-    standardize_weather_data(weather_df)
-    create_date_column(weather_df)
+    weather_df = standardize_weather_data(weather_df)
+    weather_df =create_date_column(weather_df)
 
     # save standardized/cleaned weather data
     weather_df.to_parquet(OUTPUT_DIR / "stg_weather_daily_clean.parquet", index=False)
