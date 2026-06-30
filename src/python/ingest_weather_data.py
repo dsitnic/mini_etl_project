@@ -103,7 +103,7 @@ def request_with_retry(openmeteo: openmeteo_requests.Client, params: dict[str, A
                 raise
 
 
-def response_to_dataframe(response: Any) -> pd.DataFrame:
+def response_to_dataframe(response: Any, airport_code: str) -> pd.DataFrame:
     """Convert data from the response objects returned by open-meteo API to a DataFrame."""
 
     daily = response.Daily()
@@ -115,6 +115,7 @@ def response_to_dataframe(response: Any) -> pd.DataFrame:
     )
 
     return pd.DataFrame({
+        "airport_code":         airport_code,
         "longitude":            response.Longitude(),
         "latitude":             response.Latitude(),
         "year":                 dates.year,
@@ -160,8 +161,8 @@ def fetch_weather_data_batches(
         # get responses from openmeteo
         responses = request_with_retry(openmeteo, params)
 
-        for response in responses:
-            all_frames.append(response_to_dataframe(response))
+        for response, (_, airport_row) in zip(responses, batch.iterrows()):
+            all_frames.append(response_to_dataframe(response, airport_row["airport_code"]))
 
     return pd.concat(all_frames, ignore_index=True)
 
