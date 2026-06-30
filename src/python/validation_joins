@@ -39,8 +39,8 @@ stg_weather_daily = stg_weather_daily.drop(
 # Third left join: silver_tables_joined to stg_weather_daily
 silver_tables_joined = silver_tables_joined.merge(
     stg_weather_daily,
-    left_on=["latitude_clean", "longitude_clean"],
-    right_on=["latitude", "longitude"],
+    left_on=["latitude_clean", "longitude_clean", "date_y"],
+    right_on=["latitude", "longitude", "date"],
     how="left"
 )
 
