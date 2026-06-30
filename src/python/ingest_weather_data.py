@@ -15,7 +15,7 @@ from typing import Any
 # CONSTANTS
 
 PROJECT         = Path(__file__).resolve().parents[2]
-LOCATIONS_FILE  = PROJECT / "data" / "bronze" / "airport_top100_locations_joined.csv"
+LOCATIONS_FILE  = PROJECT / "data" / "bronze" / "airport_top250_locations_joined.csv"
 OUTPUT_DIR      = PROJECT / "data" / "silver" 
 
 SOURCE          = "https://open-meteo.com"
