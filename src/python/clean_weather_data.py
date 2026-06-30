@@ -52,10 +52,10 @@ def standardize_weather_data(df: pd.DataFrame) -> pd.DataFrame:
         df["load_timestamp"] = pd.to_datetime(df["load_timestamp"], errors="coerce", utc=True)
 
     if "source" in df.columns:
-        df["source"] = df["source"].astype("string").str.strip()
+        df["source"] = df["source"].astype("string").str.strip().replace("", pd.NA)
 
     if "run_id" in df.columns:
-        df["run_id"] = df["run_id"].astype("string").str.strip()
+        df["run_id"] = df["run_id"].astype("string").str.strip().replace("", pd.NA)
 
     return df
 
