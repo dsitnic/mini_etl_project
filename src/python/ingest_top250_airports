@@ -20,7 +20,7 @@ source_url = "https://www.flightsfrom.com/top-100-airports"
 
 
 AIRPORT_COLUMNS = [
-    "airport_name",
+    "date",
     "airport_code",
     "flights"
 ]
