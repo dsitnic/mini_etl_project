@@ -4,16 +4,15 @@ from pathlib import Path
 # Base folder path
 BASE_FOLDER = Path("C:/mini_etl_project")
 SILVER_FOLDER = BASE_FOLDER / "data" / "silver"
-OUTPUT_FOLDER = 
 
 # Load tables
-stg_airport_flights = pd.read_parquet(SILVER_FOLDER / "stg_airport_flights")
-airport_geography = pd.read_csv(SILVER_FOLDER / "stg_airport_geography")
-stg_weather_clean = pd.read_csv(SILVER_FOLDER / "stg_weather_clean")
+stg_airport_flights = pd.read_parquet(SILVER_FOLDER / "stg_airport_flights.parquet")
+stg_airport_geography = pd.read_csv(SILVER_FOLDER / "stg_airport_geography.csv")
+stg_weather_daily = pd.read_csv(SILVER_FOLDER / "stg_weather_daily.csv")
 
 # First left join: stg_airport_flights to airport_geography
 silver_tables_joined = stg_airport_flights.merge(
-    airport_geography,
+    stg_airport_geography,
     left_on="APT_ICAO",
     right_on="ICAO",
     how="left"
@@ -21,10 +20,13 @@ silver_tables_joined = stg_airport_flights.merge(
 
 # Second left join: silver_tables_joined to stg_weather_daily
 silver_tables_joined = silver_tables_joined.merge(
-    stg_weather_clean,
+    stg_weather_daily,
     left_on=["Latitude", "Longitude"],
     right_on=["Latitude", "Longitude"],
     how="left"
 )
+
+
+silver_tables_joined.to_csv(SILVER_FOLDER / "silver_tables_joined.csv", index=False)
 
 print(silver_tables_joined.head())

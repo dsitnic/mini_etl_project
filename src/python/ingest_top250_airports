@@ -8,8 +8,8 @@ from datetime import datetime, timezone
 
 # Setup directories
 BASE_DIR = Path.cwd()
-AIRPORTS_SOURCE_PATH = BASE_DIR / "data" / "source" / "airports_top100.csv"
-OUTPUT_FILE = BASE_DIR / "data" / "bronze" / "airport_top100_locations_raw.csv"
+AIRPORTS_SOURCE_PATH = BASE_DIR / "data" / "source" / "top_250_airports_europe_2025.csv"
+OUTPUT_FILE = BASE_DIR / "data" / "bronze" / "airport_top250_locations_raw.csv"
 
 # New columns
 
