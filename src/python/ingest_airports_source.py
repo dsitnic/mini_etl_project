@@ -2,8 +2,9 @@
 # %%
 import pandas as pd
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 import uuid
+
 
 from pathlib import Path
 
@@ -20,7 +21,7 @@ OUTPUT_FILE = BASE_DIR / "data" / "bronze" / "airport_locations_raw.csv"
 # %%
 
 run_id = str(uuid.uuid4())
-loaded_at = datetime.now().replace(microsecond=0)
+loaded_at = datetime.now(timezone.utc).replace(microsecond=0)
 loaded_file_name = AIRPORTS_SOURCE_PATH.name
 source_url = "https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat"
 
@@ -30,7 +31,6 @@ print("loaded_file_name:", loaded_file_name)
 
 # %%
 AIRPORT_COLUMNS = [
-    "Airport ID",
     "Name",
     "City",
     "Country",
@@ -61,5 +61,6 @@ airports_df["source"] = source_url
 
 airports_df.head()
 # %%
-airports_df.to_csv(OUTPUT_FILE)
+airports_df.to_csv(OUTPUT_FILE, index=False)
+
 # %%
