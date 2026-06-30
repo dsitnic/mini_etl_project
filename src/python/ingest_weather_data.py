@@ -58,7 +58,7 @@ def get_wait_seconds(message: str) -> int:
             second=0,
             microsecond=0,
         )
-        return int((next_day - now).total_seconds() + extra_delay)
+        return int((next_day - now).total_seconds() + extra_delay * 100)
 
     if "next hour" in message:
         next_hour = (now + timedelta(hours=1)).replace(
@@ -73,7 +73,7 @@ def get_wait_seconds(message: str) -> int:
             second=0,
             microsecond=0,
         )
-        return int((next_minute - now).total_seconds() + extra_delay * 100)
+        return int((next_minute - now).total_seconds() + extra_delay)
 
     return 60
 
