@@ -14,7 +14,7 @@ from typing import Any
 
 # CONSTANTS
 
-PROJECT         = Path.cwd() 
+PROJECT         = Path(__file__).resolve().parents[2]
 LOCATIONS_FILE  = PROJECT / "data" / "silver" / "airport_locations_raw_europe.csv" # TODO, replace with actualy silver data
 OUTPUT_DIR      = PROJECT / "data" / "silver"
 
@@ -139,16 +139,17 @@ def fetch_weather_data_batches(
     total_batches = (len(locations) + batch_size - 1) // batch_size
     started_at = time.time()
 
-    for batch_num, start in enumerate(range(0, len(locations), batch_size)):
+    for batch_num, start in enumerate(range(0, len(locations), batch_size), start=1):
         elapsed_seconds = int(time.time() - started_at)
 
         print(
-            f"batch {batch_num + 1} out of {total_batches} "
+            f"batch {batch_num} out of {total_batches} "
             f"| elapsed {elapsed_seconds // 60}m {elapsed_seconds % 60}s"
         )
 
         batch = locations.iloc[start:start + batch_size]
 
+        # parameters to pass to the open-meteo api for which data to get
         params = {
             "latitude":     batch["Latitude"],
             "longitude":    batch["Longitude"],
@@ -166,7 +167,7 @@ def fetch_weather_data_batches(
     return pd.concat(all_frames, ignore_index=True)
 
 
-# MAIN SCRIPT
+# MAIN FUNCTION
 
 def main():
 
