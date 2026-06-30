@@ -16,7 +16,7 @@ from typing import Any
 
 PROJECT         = Path(__file__).resolve().parents[2]
 LOCATIONS_FILE  = PROJECT / "data" / "bronze" / "airport_top100_locations_joined.csv"
-OUTPUT_DIR      = PROJECT / "data" / "silver" / "weather_daily_raw"
+OUTPUT_DIR      = PROJECT / "data" / "bronze" / "weather_daily_raw"
 
 SOURCE          = "https://open-meteo.com"
 URL             = "https://archive-api.open-meteo.com/v1/archive"
