@@ -96,8 +96,9 @@ def request_with_retry(openmeteo: openmeteo_requests.Client, params: dict[str, A
 
             if "request limit exceeded" in message:
                 wait_seconds = get_wait_seconds(message)
+                current_time = datetime.now(timezone.utc).replace(microsecond=0)
 
-                print(f"request failed, waiting {wait_seconds} seconds: {e}")
+                print(f"[{current_time}] request failed, waiting {wait_seconds} seconds: {e}")
                 time.sleep(wait_seconds)
             else:
                 raise
