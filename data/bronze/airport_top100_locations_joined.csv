@@ -1,0 +1,101 @@
+airport_name,airport_code,flights,run_id,load_timestamp,source,Latitude,Longitude
+Chicago,ORD,1027,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,41.9786,-87.9048
+Denver,DEN,822,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,39.861698150635,-104.672996521
+Dallas,DFW,728,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,32.896801,-97.038002
+Atlanta,ATL,682,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,33.6367,-84.428101
+Guangzhou,CAN,680,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,23.39240074157715,113.29900360107422
+Shanghai,PVG,667,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,31.143400192260746,121.80500030517578
+Tokyo,HND,642,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,35.552299,139.779999
+Istanbul,IST,592,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,41.275278,28.751944
+Charlotte,CLT,580,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,35.2140007019043,-80.94309997558594
+Los Angeles,LAX,564,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,33.94250107,-118.4079971
+Delhi,DEL,563,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,28.5665,77.103104
+London,LHR,537,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,51.4706,-0.461941
+Amsterdam,AMS,523,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,52.308601,4.76389
+Jakarta,CGK,522,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,-6.1255698204,106.65599823
+Beijing,PEK,516,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,40.0801010131836,116.58499908447266
+Madrid,MAD,511,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,40.471926,-3.56264
+Houston,IAH,503,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,29.984399795532227,-95.34140014648438
+Shenzhen,SZX,497,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,22.639299392700195,113.81099700927734
+Paris,CDG,494,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,49.012798,2.55
+Chengdu,TFU,493,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,,
+Seattle,SEA,490,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,47.449001,-122.308998
+Frankfurt,FRA,483,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,50.033333,8.570556
+Seoul,ICN,476,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,37.46910095214844,126.45099639892578
+New York,JFK,475,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,40.63980103,-73.77890015
+Boston,BOS,456,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,42.36429977,-71.00520325
+Singapore,SIN,452,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,1.35019,103.994003
+Kunming,KMG,447,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,25.1019444,102.9291667
+Newark,EWR,446,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,40.692501068115234,-74.168701171875
+San Francisco,SFO,444,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,37.61899948120117,-122.375
+Kuala Lumpur,KUL,444,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,2.745579957962,101.70999908447
+Rome,FCO,438,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,41.8002778,12.2388889
+Peking,PKX,437,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,39.509945,116.41092
+Dubai,DXB,435,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,25.2527999878,55.3643989563
+Xi'an,XIY,434,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,34.447102,108.751999
+Phoenix,PHX,434,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,33.43429946899414,-112.01200103759766
+Toronto,YYZ,431,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,43.6772003174,-79.63059997559999
+Bangkok,BKK,426,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,13.681099891662598,100.74700164794922
+Chongqing,CKG,424,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,29.719200134277344,106.64199829101562
+Barcelona,BCN,423,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,41.2971,2.07846
+Miami,MIA,411,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,25.79319953918457,-80.29060363769531
+Hong Kong,HKG,397,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,22.308901,113.915001
+Bogota,BOG,396,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,4.70159,-74.1469
+Hangzhou,HGH,395,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,30.22949981689453,120.43399810791016
+Athens,ATH,388,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,37.9364013672,23.9444999695
+Orlando,MCO,378,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,28.429399490356445,-81.30899810791016
+Las Vegas,LAS,376,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,36.08010101,-115.1520004
+Philadelphia,PHL,371,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,39.87189865112305,-75.24109649658203
+Shanghai,SHA,365,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,31.197900772094727,121.33599853515624
+Munich,MUC,362,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,48.353802,11.7861
+Dublin,DUB,362,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,53.421299,-6.27007
+New York,LGA,358,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,40.77719879,-73.87259674
+Bombay,BOM,357,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,19.0886993408,72.8678970337
+Palma De Mallorca,PMI,354,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,39.551700592,2.73881006241
+Sydney,SYD,350,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,-33.94609832763672,151.177001953125
+Moscow,SVO,344,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,55.972599,37.4146
+Minneapolis,MSP,340,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,44.882,-93.221802
+Mexico City,MEX,336,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,19.4363,-99.072098
+Riyadh,RUH,335,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,24.957599639892575,46.69879913330078
+Ho Chi Minh City,SGN,324,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,10.8187999725,106.652000427
+Detroit,DTW,323,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,42.212398529052734,-83.35340118408203
+Washington,IAD,318,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,38.94449997,-77.45580292
+Jeddah,JED,313,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,21.6796,39.156502
+Manila,MNL,312,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,14.5086,121.019997
+Vancouver,YVR,310,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,49.193901062,-123.183998108
+Taipei,TPE,303,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,25.0777,121.233002
+Washington,DCA,298,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,38.8521,-77.037697
+Bangalore,BLR,297,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,13.1979,77.706299
+Paris,ORY,296,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,48.7233333,2.3794444
+Istanbul,SAW,295,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,40.898601532,29.3092002869
+London,LGW,295,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,51.148102,-0.190278
+Nanjing,NKG,290,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,31.742000579833984,118.86199951171876
+Vienna,VIE,285,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,48.110298156738,16.569700241089
+Zurich,ZRH,281,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,47.464699,8.54917
+Copenhagen,CPH,281,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,55.617900848389,12.656000137329
+Wuhan,WUH,280,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,30.7838,114.208
+San Diego,SAN,274,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,32.7336006165,-117.190002441
+Melbourne,MEL,273,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,-37.673302,144.843002
+Urumqi,URC,270,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,43.90710067749024,87.47419738769531
+Zhengzhou,CGO,268,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,34.519699096699995,113.841003418
+Hanoi,HAN,266,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,21.221200942993164,105.80699920654295
+Tokyo,NRT,265,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,35.7647018433,140.386001587
+Doha,DOH,265,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,25.273056,51.608056
+Antalya,AYT,265,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,36.898701,30.800501
+Salt Lake City,SLC,263,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,40.78839874267578,-111.97799682617188
+Nashville,BNA,263,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,36.1245002746582,-86.6781997680664
+Changsha,CSX,260,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,28.1891994476,113.220001221
+London,STN,256,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,51.8849983215,0.234999999404
+Qingdao,TAO,256,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,36.2661018372,120.374000549
+Milano,MXP,255,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,45.6306,8.72811
+Chengdu,CTU,252,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,30.578500747680664,103.9469985961914
+Manchester,MAN,252,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,53.35369873046875,-2.2749500274658203
+Malaga,AGP,251,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,36.67490005493164,-4.499110221862793
+Johannesburg,JNB,251,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,-26.1392,28.246
+Fukuoka,FUK,248,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,33.585899353027344,130.4510040283203
+Xiamen,XMN,244,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,24.54400062561035,118.12799835205078
+Lisbon,LIS,242,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,38.7813,-9.13592
+Oslo,OSL,238,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,60.121,11.0502
+Montreal,YUL,237,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,45.4706001282,-73.7407989502
+Cairo,CAI,235,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,30.12190055847168,31.40559959411621
+Brisbane,BNE,228,248fb32d-30db-476d-a229-e20aa0e5dfcc,2026-06-30 08:57:33,https://www.flightsfrom.com/top-100-airports,-27.38419914245605,153.11700439453125
