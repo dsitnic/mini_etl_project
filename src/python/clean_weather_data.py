@@ -77,7 +77,7 @@ def create_date_column(df: pd.DataFrame) -> pd.DataFrame:
 def main():
 
     # load raw weather data
-    weather_df = pd.read_parquet(WEATHER_DATA_RAW)
+    weather_df = pd.read_csv(WEATHER_DATA_RAW)
 
     # inspect and standardize weather data
     inspect_weather_data(weather_df)
@@ -85,7 +85,7 @@ def main():
     create_date_column(weather_df)
 
     # save standardized/cleaned weather data
-    weather_df.to_csv(OUTPUT_DIR / "stg_weather_daily_clean.csv", index=False)
+    weather_df.to_parquet(OUTPUT_DIR / "stg_weather_daily_clean.parquet", index=False)
 
 
 if __name__ == "__main__":
