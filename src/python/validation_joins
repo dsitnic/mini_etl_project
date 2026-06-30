@@ -1,0 +1,29 @@
+import pandas as pd
+from pathlib import Path
+
+# Base folder path
+BASE_FOLDER = Path("C:/mini_etl_project")
+SILVER_FOLDER = BASE_FOLDER / "data" / "silver"
+
+# Load tables
+stg_airport_flights = pd.read_csv(SILVER_FOLDER / "stg_airport_flights")
+airport_geography = pd.read_csv(SILVER_FOLDER / "airport_geography")
+stg_weather_daily = pd.read_csv(SILVER_FOLDER / "stg_weather_daily")
+
+# First left join: stg_airport_flights to airport_geography
+silver_tables_joined = stg_airport_flights.merge(
+    airport_geography,
+    left_on="APT_ICAO",
+    right_on="ICAO",
+    how="left"
+)
+
+# Second left join: silver_tables_joined to stg_weather_daily
+silver_tables_joined = silver_tables_joined.merge(
+    stg_weather_daily,
+    left_on=["Latitude", "Longitude"],
+    right_on=["Latitude", "Longitude"],
+    how="left"
+)
+
+print(silver_tables_joined.head())
