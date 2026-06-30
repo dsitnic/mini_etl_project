@@ -46,5 +46,3 @@ silver_tables_joined = silver_tables_joined.merge(
 
 
 silver_tables_joined.to_parquet(SILVER_FOLDER / "silver_tables_joined.parquet", index=False)
-
-print(silver_tables_joined.head())
