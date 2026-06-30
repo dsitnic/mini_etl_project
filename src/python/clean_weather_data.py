@@ -6,9 +6,9 @@ from pathlib import Path
 
 # CONSTANTS
 
-PROJECT         = Path(__file__).resolve().parents[2]
-WEATHER_DATA_RAW  = PROJECT / "data" / "bronze" / "weather_daily_raw"
-OUTPUT_DIR      = PROJECT / "data" / "silver"
+PROJECT             = Path(__file__).resolve().parents[2]
+WEATHER_DATA_RAW    = PROJECT / "data" / "bronze" / "weather_daily_raw"
+OUTPUT_DIR          = PROJECT / "data" / "silver"
 
 
 # HELPER FUNCTIONS
