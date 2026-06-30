@@ -2,11 +2,15 @@ import csv
 from pathlib import Path
 
 BASE_DIR = Path(r"C:\mini_etl_project\data\bronze")
+SILVER_FOLDER = Path(r"C:\mini_etl_project\data\silver")
 
 LEFT_FILE = BASE_DIR / "airport_top250_locations_raw.csv"
-RIGHT_FILE = BASE_DIR / "airport_locations_raw.csv"
+RIGHT_FILE = SILVER_FOLDER / "stg_airport_geography.csv"
 OUTPUT_FILE = BASE_DIR / "airport_top250_locations_joined.csv"
-LOCATION_COLUMNS = ["Latitude", "Longitude"]
+LOCATION_COLUMN_MAP = {
+    "Latitude": "latitude_clean",
+    "Longitude": "longitude_clean",
+}
 
 
 def read_csv_rows(path: Path):
@@ -25,12 +29,14 @@ def join_csvs(left_path: Path, right_path: Path, output_path: Path) -> Path:
 
     right_lookup = {}
     for row in right_rows:
-        airport_code = (row.get("ICAO") or row.get("airport_code") or "").strip()
+        airport_code = (
+            row.get("ICAO") or row.get("icao_clean") or row.get("airport_code") or ""
+        ).strip()
         if airport_code:
             right_lookup[airport_code] = row
 
     output_fieldnames = list(left_fieldnames)
-    for field in LOCATION_COLUMNS:
+    for field in LOCATION_COLUMN_MAP:
         if field not in output_fieldnames:
             output_fieldnames.append(field)
 
@@ -43,8 +49,8 @@ def join_csvs(left_path: Path, right_path: Path, output_path: Path) -> Path:
             airport_code = (left_row.get("airport_code") or "").strip()
             right_row = right_lookup.get(airport_code, {})
 
-            for field in LOCATION_COLUMNS:
-                merged_row[field] = right_row.get(field, "")
+            for output_field, right_field in LOCATION_COLUMN_MAP.items():
+                merged_row[output_field] = right_row.get(right_field, "")
 
             writer.writerow(merged_row)
 
