@@ -7,7 +7,7 @@ from pathlib import Path
 # CONSTANTS
 
 PROJECT             = Path(__file__).resolve().parents[2]
-WEATHER_DATA_RAW    = PROJECT / "data" / "bronze" / "weather_daily_raw"
+WEATHER_DATA_RAW    = PROJECT / "data" / "bronze" / "weather_daily_raw.csv"
 OUTPUT_DIR          = PROJECT / "data" / "silver"
 
 
@@ -85,7 +85,7 @@ def main():
     create_date_column(weather_df)
 
     # save standardized/cleaned weather data
-    weather_df.to_parquet(OUTPUT_DIR / "weather_daily_clean", index=False, partition_cols=["year"])
+    weather_df.to_csv(OUTPUT_DIR / "stg_weather_daily.csv", index=False)
 
 
 if __name__ == "__main__":

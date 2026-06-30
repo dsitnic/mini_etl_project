@@ -16,7 +16,7 @@ from typing import Any
 
 PROJECT         = Path(__file__).resolve().parents[2]
 LOCATIONS_FILE  = PROJECT / "data" / "bronze" / "airport_top100_locations_joined.csv"
-OUTPUT_DIR      = PROJECT / "data" / "bronze" / "weather_daily_raw"
+OUTPUT_DIR      = PROJECT / "data" / "bronze" 
 
 SOURCE          = "https://open-meteo.com"
 URL             = "https://archive-api.open-meteo.com/v1/archive"
@@ -185,7 +185,7 @@ def main():
     weather_df["run_id"]            = str(uuid.uuid4())
 
     # save data to parquet and partition by year to keep filesizes down
-    weather_df.to_parquet(OUTPUT_DIR, index=False, partition_cols=["year"])
+    weather_df.to_csv(OUTPUT_DIR / "weather_daily_raw.csv", index=False)
 
 
 if __name__ == "__main__":
