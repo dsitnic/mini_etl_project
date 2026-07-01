@@ -1,0 +1,9 @@
+filename,row_count
+airport_top250_locations_raw,250
+stg_airport_flights,571454
+stg_weather_daily,456500
+airport_locations,7698
+silver_tables_joined,448423
+review_rows,288907
+duplicated_rows,0
+valid_rows,159516
