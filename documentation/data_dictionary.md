@@ -46,8 +46,8 @@ Applies to `airport_flights_2021.csv` through `airport_flights_2025.csv`.
 | `APT_ICAO` | string | Airport ICAO code | Standardized to uppercase; used as join key |
 | `APT_NAME` | string | Airport name | Standardized to title case |
 | `STATE_NAME` | string | Country/state name from source | Renamed to `country` in Silver |
-| `FLT_DEP_1` | integer | Departure flight count metric | Renamed to `departures`; used as the Gold fact flight count |
-| `FLT_DEP_IFR_2` | float | Submitted IFR departure count metric | Renamed to `departures_data_submitted`; validated in Silver but not loaded as the Gold fact flight count |
+| `FLT_DEP_1` | integer | Departure flight count metric | Renamed to `departures`; validated in Silver but not loaded as the Gold fact flight count |
+| `FLT_DEP_IFR_2` | float | Submitted IFR departure count metric | Renamed to `departures_data_submitted`; used as the Gold fact `departures` value |
 | `DLY_ALL_PRE_2` | float | Pre-departure delay minutes | Renamed to `delay_minutes` in Silver |
 | `load_timestamp` | string/timestamp | Ingestion timestamp | Technical metadata |
 | `source_system` | string | EuroControl source URL/system | Technical metadata |
@@ -108,8 +108,8 @@ Applies to `data/silver/stg_airport_flights.parquet`.
 | `apt_icao` | string | Airport ICAO code from flight data | Join key |
 | `apt_name` | string | Airport name from flight data | Standardized text |
 | `country` | string | Country/state name from flight data | From Bronze `STATE_NAME` |
-| `depatures` | numeric | Departure flight count metric from `FLT_DEP_1` | Typo retained in staging; renamed later to `departures` and used as the Gold fact flight count |
-| `depatures_data_submitted` | numeric | Submitted IFR departure count metric from `FLT_DEP_IFR_2` | Typo retained in staging; renamed later to `departures_data_submitted`; validated in Silver but not loaded as the Gold fact flight count |
+| `depatures` | numeric | Departure flight count metric from `FLT_DEP_1` | Typo retained in staging; renamed later to `departures`; validated in Silver but not loaded as the Gold fact flight count |
+| `depatures_data_submitted` | numeric | Submitted IFR departure count metric from `FLT_DEP_IFR_2` | Typo retained in staging; renamed later to `departures_data_submitted` and used as the Gold fact `departures` value |
 | `delay_minutes` | numeric | Pre-departure delay minutes | Validated in Silver |
 | `load_timestamp` | timestamp | Ingestion timestamp | Metadata from Bronze |
 | `source_system` | string | EuroControl source URL/system | Metadata from Bronze |
@@ -175,8 +175,8 @@ Applies to `silver_tables_joined.parquet`, `valid_rows.csv`, and `review_rows.cs
 | `latitude` | float | Airport latitude | Must be between -90 and 90 |
 | `longitude` | float | Airport longitude | Must be between -180 and 180 |
 | `altitude` | numeric | Airport altitude | From airport geography |
-| `departures` | numeric | Departure count from `FLT_DEP_1` | Must be non-negative; used as the Gold fact flight count |
-| `departures_data_submitted` | numeric | Submitted IFR departure count metric from `FLT_DEP_IFR_2` | Must be non-negative when present; validated in Silver but not loaded as the Gold fact flight count |
+| `departures` | numeric | Departure count from `FLT_DEP_1` | Must be non-negative; validated in Silver but not loaded as the Gold fact flight count |
+| `departures_data_submitted` | numeric | Submitted IFR departure count metric from `FLT_DEP_IFR_2` | Must be non-negative when present; used as the Gold fact `departures` value |
 | `delay_minutes` | numeric | Pre-departure delay minutes | Must be non-negative when present |
 | `temperature_2m_mean` | float | Daily mean 2m temperature | Must be between -40 and 60 |
 | `precipitation_sum` | float | Daily precipitation total | Must be non-negative |
@@ -241,8 +241,8 @@ Profiling notes:
 | `flight_key` | integer | Surrogate flight fact key |
 | `date_key` | integer | Foreign key to `gold.dim_date` |
 | `departure_apt_key` | integer | Foreign key to `gold.dim_airport` |
-| `departures` | integer | Departure count from Silver `departures` / Bronze `FLT_DEP_1` |
-| `total_departures_delay_m` | float | Total pre-departure delay minutes |
+| `departures` | integer | Departure count from Silver `departures_data_submitted` / Bronze `FLT_DEP_IFR_2` |
+| `departures_delay_m` | float | Pre-departure delay minutes from Silver `delay_minutes` |
 | `temperature_2m_mean` | float | Daily mean 2m temperature |
 | `precipitation_sum` | float | Daily precipitation total |
 | `wind_speed_10m_max` | float | Daily maximum 10m wind speed |
@@ -254,3 +254,4 @@ Profiling notes:
 - Rows with failed Silver validation are preserved in `review_rows.csv` rather than being deleted.
 - Gold tables are loaded only from `valid_rows.csv`.
 - Column names with `depatures` in `stg_airport_flights.parquet` are staging typos retained by the current script and corrected during `validation_joins.py`.
+- Gold `fact_flights.departures` is populated from Silver `departures_data_submitted`, not Silver `departures`.

@@ -95,7 +95,7 @@ The Silver layer feeds the Gold layer as follows:
 | Silver Input | Gold Output | Gold Action |
 |---|---|---|
 | `valid_rows` | `dim_date` | Build the date dimension from distinct validated dates |
-| `valid_rows` | `fact_flights` | Build flight facts by airport and date using `departures` as the flight count |
+| `valid_rows` | `fact_flights` | Build flight facts by airport and date using `departures_data_submitted` as the Gold `departures` value |
 | `valid_rows` | `dim_airport` | Build airport dimension from distinct airport attributes |
 
 The Gold load step is implemented in `src/python/data_loading_to_gold.py`, which reads `data/silver/valid_rows.csv` and constructs `dim_date`, `dim_airport`, and `fact_flights`.
