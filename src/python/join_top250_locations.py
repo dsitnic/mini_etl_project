@@ -3,9 +3,10 @@ from pathlib import Path
 
 
 BASE_DIR = Path(__file__).resolve().parents[2]
+BRONZE_FOLDER = BASE_DIR / "data" / "bronze"
 SILVER_FOLDER = BASE_DIR / "data" / "silver"
 
-LEFT_FILE = BASE_DIR / "airport_top250_locations_raw.csv"
+LEFT_FILE = BRONZE_FOLDER / "airport_top250_locations_raw.csv"
 RIGHT_FILE = SILVER_FOLDER / "stg_airport_geography.csv"
 OUTPUT_FILE = BASE_DIR / "airport_top250_locations_joined.csv"
 LOCATION_COLUMN_MAP = {
