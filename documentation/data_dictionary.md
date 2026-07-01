@@ -72,8 +72,8 @@ Applies to `data/bronze/airport_locations_raw.csv`.
 | `Timezone` | string/float | Timezone offset | Cleaned to `timezone_clean` in Silver |
 | `DST` | string | Daylight saving time flag | Cleaned to `dst_clean` in Silver |
 | `Tz database timezone` | string | Timezone database name | Cleaned to `tz_database_timezone_clean` in Silver |
-| `Type` | string | OpenFlights location type | Not kept in final Silver geography output |
-| `Source` | string | OpenFlights source label | Not kept as a business field |
+| `Type` | string | OpenFlights location type | Source field |
+| `Source` | string | OpenFlights source label | Source field |
 | `run_id` | string | Ingestion run identifier | Technical metadata |
 | `load_timestamp` | string/timestamp | Ingestion timestamp | Technical metadata |
 | `source` | string | Source URL | Technical metadata |
@@ -185,9 +185,6 @@ Applies to `silver_tables_joined.parquet`, `valid_rows.csv`, and `review_rows.cs
 
 Profiling notes:
 
-- `silver_tables_joined.parquet` has 448,423 rows.
-- `valid_rows.csv` has 159,516 rows.
-- `review_rows.csv` has 288,907 rows.
 - The validation script counted 0 duplicate `date + icao` combinations.
 - Most review rows are caused by missing `departures_data_submitted` and `delay_minutes`.
 
@@ -249,9 +246,6 @@ Profiling notes:
 
 ## 6. Data Quality Notes
 
-- Bronze keeps source-level values and adds ingestion metadata.
-- Silver performs the main cleaning, typing, joining, and validation.
 - Rows with failed Silver validation are preserved in `review_rows.csv` rather than being deleted.
 - Gold tables are loaded only from `valid_rows.csv`.
-- Column names with `depatures` in `stg_airport_flights.parquet` are staging typos retained by the current script and corrected during `validation_joins.py`.
 - Gold `fact_flights.departures` is populated from Silver `departures_data_submitted`, not Silver `departures`.
