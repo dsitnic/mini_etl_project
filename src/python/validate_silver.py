@@ -119,8 +119,11 @@ print(metric_summary)
 # display(metric_summary)
 print("create review reason summary ...")
 review_summary = review_rows.value_counts("review_reason").reset_index()
+review_summary = review_summary[["count", "review_reason"]]
 # display(review_summary)
 # print(review_summary)
+
+
 
 # write files
 print("saving files ...")
