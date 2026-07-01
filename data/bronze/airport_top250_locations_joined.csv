@@ -233,7 +233,7 @@ date,airport_code,flights,run_id,load_timestamp,source,Latitude,Longitude
 2025-01-01,LFBE,5,d22896dc-1e25-42a7-857d-e3b7b2fd55a3,2026-06-30 14:54:45,https://www.flightsfrom.com/top-100-airports,44.82529830932617,0.5186110138893127
 2025-01-01,LFLY,5,d22896dc-1e25-42a7-857d-e3b7b2fd55a3,2026-06-30 14:54:45,https://www.flightsfrom.com/top-100-airports,45.72719955444336,4.944270133972168
 2025-01-01,LFOK,5,d22896dc-1e25-42a7-857d-e3b7b2fd55a3,2026-06-30 14:54:45,https://www.flightsfrom.com/top-100-airports,48.7733333333,4.206111111
-2025-01-01,ENBL,5,d22896dc-1e25-42a7-857d-e3b7b2fd55a3,2026-06-30 14:54:45,https://www.flightsfrom.com/top-100-airports,,
+2025-01-01,ENBL,5,d22896dc-1e25-42a7-857d-e3b7b2fd55a3,2026-06-30 14:54:45,https://www.flightsfrom.com/top-100-airports,61.39110,5.75690
 2025-01-01,ENMS,5,d22896dc-1e25-42a7-857d-e3b7b2fd55a3,2026-06-30 14:54:45,https://www.flightsfrom.com/top-100-airports,65.783996582031,13.214900016785
 2025-01-01,ENSD,5,d22896dc-1e25-42a7-857d-e3b7b2fd55a3,2026-06-30 14:54:45,https://www.flightsfrom.com/top-100-airports,61.830001831055,6.1058301925659
 2025-01-01,LERT,5,d22896dc-1e25-42a7-857d-e3b7b2fd55a3,2026-06-30 14:54:45,https://www.flightsfrom.com/top-100-airports,36.645198822,-6.34946012497
