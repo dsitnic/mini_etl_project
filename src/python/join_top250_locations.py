@@ -1,8 +1,9 @@
 import csv
 from pathlib import Path
 
-BASE_DIR = Path(r"C:\mini_etl_project\data\bronze")
-SILVER_FOLDER = Path(r"C:\mini_etl_project\data\silver")
+
+BASE_DIR = Path(__file__).resolve().parents[2]
+SILVER_FOLDER = BASE_DIR / "data" / "silver"
 
 LEFT_FILE = BASE_DIR / "airport_top250_locations_raw.csv"
 RIGHT_FILE = SILVER_FOLDER / "stg_airport_geography.csv"

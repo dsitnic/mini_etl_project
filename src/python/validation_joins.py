@@ -2,7 +2,7 @@ import pandas as pd
 from pathlib import Path
 
 # Base folder path
-BASE_FOLDER = Path("C:/mini_etl_project")
+BASE_FOLDER = Path(__file__).resolve().parents[2]
 SILVER_FOLDER = BASE_FOLDER / "data" / "silver"
 BRONZE_FOLDER = BASE_FOLDER / "data" / "bronze"
 
