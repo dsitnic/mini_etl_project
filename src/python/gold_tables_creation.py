@@ -78,7 +78,7 @@ CREATE TABLE gold.fact_flights (
     date_key INT NOT NULL,
     departure_apt_key INT NOT NULL,
     departures INT,
-    total_departures_delay_m FLOAT,
+    departures_delay_m FLOAT,
     temperature_2m_mean FLOAT,
     precipitation_sum FLOAT,
     wind_speed_10m_max FLOAT,

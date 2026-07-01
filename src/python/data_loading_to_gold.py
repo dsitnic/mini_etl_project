@@ -42,7 +42,7 @@ valid_rows["date"] = pd.to_datetime(valid_rows["date"])
 # -----------------------------
 # Create dim_date
 # -----------------------------
-dim_date = valid_rows[["date"]].drop_duplicates().copy()
+dim_date = valid_rows[["date"]].drop_duplicates().copy() # better to generate dates between min and max date
 
 dim_date["date_key"] = dim_date["date"].dt.strftime("%Y%m%d").astype(int)
 dim_date["year"] = dim_date["date"].dt.year
@@ -100,8 +100,6 @@ dim_airport = dim_airport.rename(columns={
 dim_airport = dim_airport.reset_index(drop=True)
 dim_airport["airport_key"] = dim_airport.index + 1
 
-dim_airport["region"] = None
-
 dim_airport = dim_airport[
     [
         "airport_key",
@@ -133,7 +131,7 @@ fact_flights = fact_source[
     [
         "date_key",
         "airport_key",
-        "departures",
+        "departures_data_submitted", # changed departures to departures_data_submitted
         "delay_minutes",
         "temperature_2m_mean",
         "precipitation_sum",
@@ -141,9 +139,11 @@ fact_flights = fact_source[
     ]
 ].copy()
 
+# change long name to departures
 fact_flights = fact_flights.rename(columns={
+    "departures_data_submitted" : "departures",
     "airport_key": "departure_apt_key",
-    "delay_minutes": "total_departures_delay_m"
+    "delay_minutes": "departures_delay_m"
 })
 
 fact_flights = fact_flights.reset_index(drop=True)
@@ -155,7 +155,7 @@ fact_flights = fact_flights[
         "date_key",
         "departure_apt_key",
         "departures",
-        "total_departures_delay_m",
+        "departures_delay_m",
         "temperature_2m_mean",
         "precipitation_sum",
         "wind_speed_10m_max"
