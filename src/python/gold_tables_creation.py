@@ -67,7 +67,6 @@ CREATE TABLE gold.dim_airport (
     airport_name NVARCHAR(250),
     icao_code CHAR(4) NOT NULL UNIQUE,
     iata_code CHAR(3) UNIQUE,
-    region NVARCHAR(50),
     country NVARCHAR(250),
     city NVARCHAR(250),
     latitude FLOAT,
