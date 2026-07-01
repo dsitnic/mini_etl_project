@@ -15,15 +15,18 @@ The Silver layer is the cleaned and standardized layer of the pipeline. Its purp
 | Joined top airport locations | Top airport list enriched with latitude and longitude | Bronze `airport_top250_locations_joined.csv` | Fetch weather data from Open-Meteo |
 | Open-Meteo API | Daily weather data retrieved using airport coordinates | External weather API | Build `stg_weather_daily` |
 
-## 3. Silver Output Files (WIP, update correct column names)
+## 3. Silver Output Files
 Folder structure:
 
 ```text
 data/
   silver/
     stg_airport_flights.parquet
-    airport_geography.csv
-    stg_weather_daily.parquet
+    stg_airport_geography.csv
+    stg_weather_daily.csv
+    stg_weather_daily_clean.parquet
+    validated_rows.csv
+    rejected_rows.csv
     quality/
       silver_quality_summary.csv
 ```
@@ -32,91 +35,48 @@ data/
 
 | Field | Value |
 |---|---|
-| File name | `stg_airport_flights.csv` |
 | Path | `data/silver/stg_airport_flights.csv` |
 | Purpose | Cleaned and standardized airport flight data for downstream joins and modeling |
-
-| Column | Description |
-|---|---|
-| `flight_date` | Parsed date from `FLT_DATE` |
-| `year` | Flight year |
-| `month_number` | Numeric month |
-| `month_name` | Month abbreviation or cleaned month name |
-| `airport_icao` | Standardized ICAO airport code |
-| `airport_name` | Cleaned airport name |
-| `country_name` | Cleaned country/state name |
-| `flight_departures` | Typed departure metric |
-| `flight_departures_ifr` | Typed IFR departure metric |
-| `delay_all_pre` | Typed delay metric |
-| `run_id` | Pipeline run identifier |
-| `load_timestamp` | Processing timestamp |
 
 ### 3.2 Airport Geography
 
 | Field | Value |
 |---|---|
-| File name | `airport_geography.csv` |
 | Path | `data/silver/airport_geography.csv` |
 | Purpose | Cleaned airport reference data with validated geography and airport codes |
-
-| Column | Description |
-|---|---|
-| `airport_name` | Cleaned airport name |
-| `city` | Cleaned city name |
-| `country` | Cleaned country name |
-| `iata_code` | Standardized IATA code |
-| `icao_code` | Standardized ICAO code |
-| `latitude` | Validated latitude |
-| `longitude` | Validated longitude |
-| `timezone_name` | Timezone database name |
-| `airport_type` | Type from source, for example airport |
-| `source` | Original source label |
-| `run_id` | Pipeline run identifier |
-| `load_timestamp` | Processing timestamp |
 
 ### 3.3 Weather Daily Staging
 
 | Field | Value |
 |---|---|
-| File name | `stg_weather_daily.parquet` |
-| Path | `data/silver/stg_weather_daily.parquet` |
-| Purpose | Daily weather observations linked to airports and dates for downstream analysis |
+| Path | `data/silver/stg_weather_daily.csv` |
+| Purpose | Daily weather observations linked to airports and dates, uncleaned |
 
-| Column | Description |
-|---|---|
-| `airport_icao` | Airport ICAO code used for joining |
-| `weather_date` | Date of weather observation |
-| `latitude` | Airport latitude used for API request |
-| `longitude` | Airport longitude used for API request |
-| `temperature_max_c` | Daily maximum temperature |
-| `temperature_min_c` | Daily minimum temperature |
-| `precipitation_sum_mm` | Daily precipitation total |
-| `windspeed_max_kmh` | Daily maximum wind speed |
-| `weather_code` | Weather condition code |
-| `run_id` | Pipeline run identifier |
-| `load_timestamp` | Processing timestamp |
-
-### 3.4 Staging Validation Dataset
+### 3.4 Weather Daily Staging
 
 | Field | Value |
 |---|---|
-| File name | `silver_tables_joined.csv` |
+| Path | `data/silver/stg_weather_daily.parquet` |
+| Purpose | Cleaned daily weather observations linked to airports and dates |
+
+### 3.5 Staging Validation Dataset
+
+| Field | Value |
+|---|---|
 | Path | `data/silver/silver_tables_joined.csv` |
 | Purpose | Combined staging dataset created by joining flight data and weather data before validation |
 
-### 3.5 Validated Rows
+### 3.6 Validated Rows
 
 | Field | Value |
 |---|---|
-| File name | `validated_rows.csv` |
 | Path | `data/silver/validated_rows.csv` |
 | Purpose | Rows that pass Silver validation checks and are used to build Gold tables |
 
-### 3.6 Rejected Rows
+### 3.7 Rejected Rows
 
 | Field | Value |
 |---|---|
-| File name | `rejected_rows.csv` |
 | Path | `data/silver/rejected_rows.csv` |
 | Purpose | Rows that fail Silver validation checks and are kept for review |
 
@@ -132,8 +92,7 @@ The Silver layer applies these standardizations:
 4. Parse date and timestamp fields into datetime types.
 5. Convert numeric fields such as flight metrics, coordinates, altitude, timezone, and weather measures to numeric types.
 6. Rename selected source columns to clearer Silver names.
-7. Keep source metadata such as `run_id`, `load_timestamp`, and `source`.
-8. Save cleaned outputs to the Silver layer.
+7. Save cleaned outputs to the Silver layer.
 
 ## 5. Silver Quality Checks (WIP, update with the actual quality checks used)
 
@@ -152,8 +111,8 @@ The Silver layer feeds the Gold layer as follows:
 
 | Silver Input | Gold Output | Gold Action |
 |---|---|---|
-| `validated_rows` | `fact_flights` | Build flight facts by airport and date |
-| `airport_geography` | `dim_geography` | Build airport dimension |
+| `validated_rows` | `fact_flight` | Build flight facts by airport and date |
+| `airport_geography` | `dim_airport` | Build airport dimension |
 
 ## 7. Definition of Done for Silver
 
