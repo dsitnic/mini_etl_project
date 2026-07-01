@@ -44,31 +44,44 @@ silver_tables_joined = silver_tables_joined.merge(
     how="left"
 )
 
+
 # cleaning columns
 silver_tables_joined = silver_tables_joined[[
     'date',
     'airport_name_clean',
     'icao_clean',
+    "apt_icao",
     'iata_clean',
     'country_clean',
     'city_clean',
-    'timezone_clean',
-    'tz_database_timezone_clean',
     'year_x',
     'month_num',
     'month_str',
     'latitude_clean', 
     'longitude_clean',
     'altitude_clean',
-    'flights'
     'depatures', 
     'depatures_data_submitted', 
     'delay_minutes',
-    'dst_clean',
     'temperature_2m_mean',
     'precipitation_sum',
     'wind_speed_10m_max'
 ]]
 
+silver_tables_joined.rename(columns={
+    "depatures"                 : "departures",
+    "depatures_data_submitted"  : "departures_data_submitted",
+    'year_x'                    : "year",
+    "airport_name_clean"        : "airport_name",
+    "icao_clean"                : "icao",
+    'iata_clean'                : "iata",
+    "country_clean"             : "country",
+    "city_clean"                : "city",
+    'latitude_clean'            : 'latitude' , 
+    'longitude_clean'           : "longitude",
+    'altitude_clean'            : "altitude",
+
+
+}, inplace=True)
 
 silver_tables_joined.to_parquet(SILVER_FOLDER / "silver_tables_joined.parquet", index=False)
