@@ -39,10 +39,36 @@ stg_weather_daily = stg_weather_daily.drop(
 # Third left join: silver_tables_joined to stg_weather_daily
 silver_tables_joined = silver_tables_joined.merge(
     stg_weather_daily,
-    left_on=["latitude_clean", "longitude_clean", "date_y"],
-    right_on=["latitude", "longitude", "date"],
+    left_on=["apt_icao", "date_y"],
+    right_on=["airport_code", "date"],
     how="left"
 )
+
+# cleaning columns
+silver_tables_joined = silver_tables_joined[[
+    'date',
+    'airport_name_clean',
+    'icao_clean',
+    'iata_clean',
+    'country_clean',
+    'city_clean',
+    'timezone_clean',
+    'tz_database_timezone_clean',
+    'year_x',
+    'month_num',
+    'month_str',
+    'latitude_clean', 
+    'longitude_clean',
+    'altitude_clean',
+    'flights'
+    'depatures', 
+    'depatures_data_submitted', 
+    'delay_minutes',
+    'dst_clean',
+    'temperature_2m_mean',
+    'precipitation_sum',
+    'wind_speed_10m_max'
+]]
 
 
 silver_tables_joined.to_parquet(SILVER_FOLDER / "silver_tables_joined.parquet", index=False)
