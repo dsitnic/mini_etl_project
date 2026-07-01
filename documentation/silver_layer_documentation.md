@@ -35,7 +35,7 @@ The Silver layer applies these standardizations across the staging scripts:
 1. Flight data columns are lowercased, yearly files are concatenated, dates are parsed, and core measures are converted to numeric types.
 2. Flight text fields are trimmed and normalized:
    `apt_icao` is uppercased, while `month_mon`, `apt_name`, and `state_name` are title-cased.
-3. Flight columns are renamed for downstream use, including `flt_date -> date`, `state_name -> country`, `dly_all_pre_2 -> delay_minutes`, and the departure metrics used later in validation.
+3. Flight columns are renamed for downstream use, including `flt_date -> date`, `state_name -> country`, `flt_dep_1 -> departures`, `flt_dep_ifr_2 -> departures_data_submitted`, and `dly_all_pre_2 -> delay_minutes`.
 4. Airport location columns are renamed and standardized into cleaned fields such as `airport_name_clean`, `city_clean`, `country_clean`, `iata_clean`, `icao_clean`, `latitude_clean`, and `longitude_clean`.
 5. Airport location coordinates, altitude, timezone, and load timestamp are cast to numeric or datetime types.
 6. Weather data columns are lowercased, key numeric weather fields are coerced to numeric, `load_timestamp` is parsed as UTC datetime, and `airport_code` is uppercased.
@@ -95,7 +95,7 @@ The Silver layer feeds the Gold layer as follows:
 | Silver Input | Gold Output | Gold Action |
 |---|---|---|
 | `valid_rows` | `dim_date` | Build the date dimension from distinct validated dates |
-| `valid_rows` | `fact_flights` | Build flight facts by airport and date |
+| `valid_rows` | `fact_flights` | Build flight facts by airport and date using `departures` as the flight count |
 | `valid_rows` | `dim_airport` | Build airport dimension from distinct airport attributes |
 
 The Gold load step is implemented in `src/python/data_loading_to_gold.py`, which reads `data/silver/valid_rows.csv` and constructs `dim_date`, `dim_airport`, and `fact_flights`.
