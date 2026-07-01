@@ -57,6 +57,9 @@ def standardize_weather_data(df: pd.DataFrame) -> pd.DataFrame:
     if "run_id" in df.columns:
         df["run_id"] = df["run_id"].astype("string").str.strip().replace("", pd.NA)
 
+    if "airport_code" in df.columns:
+        df["airport_code"] = df["airport_code"].astype("string").str.strip().replace("", pd.NA).str.upper()
+
     return df
 
 
