@@ -8,7 +8,7 @@ SILVER_FOLDER = BASE_DIR / "data" / "silver"
 
 LEFT_FILE = BRONZE_FOLDER / "airport_top250_locations_raw.csv"
 RIGHT_FILE = SILVER_FOLDER / "stg_airport_geography.csv"
-OUTPUT_FILE = BASE_DIR / "airport_top250_locations_joined.csv"
+OUTPUT_FILE = BRONZE_FOLDER / "airport_top250_locations_joined.csv"
 LOCATION_COLUMN_MAP = {
     "latitude": "latitude_clean",
     "longitude": "longitude_clean",
